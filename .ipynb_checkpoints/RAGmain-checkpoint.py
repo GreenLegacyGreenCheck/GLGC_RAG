@@ -34,18 +34,21 @@ def recommend_policy(req: RecommendRequest):
             "default_actions": [ 
                 {
                     "id": 1,
-                    "title": "관할 지자체 복지센터 방문 상담",
-                    "description": "거주하시는 지역의 행정복지센터에서 맞춤형 오프라인 상담을 받아보세요."
+                    "title": "에너지 바우처 신청",
+                    "description": "에너지 취약계층을 위한 전기, 도시가스, 지역난방 등의 요금 지원을 알아보세요.",
+                    "url": "https://www.energyv.or.kr"
                 },
                 {
                     "id": 2,
-                    "title": "정부24 보조금24 알림 설정",
-                    "description": "새로운 지원사업이 등록되면 가장 먼저 알림을 받을 수 있도록 설정해 보세요."
+                    "title": "정부24 보조금24 확인하기",
+                    "description": "내가 받을 수 있는 국가보조금과 정부 혜택을 한 번에 조회하고 신청해 보세요.",
+                    "url": "https://www.gov.kr/portal/rcvfvrSvc/main"
                 },
                 {
                     "id": 3,
-                    "title": "통합콜센터 전화 문의",
-                    "description": "전문 상담원과 전화로 현재 상황에 맞는 다른 대안을 찾아보세요."
+                    "title": "복지로 맞춤형 복지 찾기",
+                    "description": "대한민국 대표 복지포털에서 나의 상황에 맞는 맞춤형 복지 서비스를 검색해 보세요.",
+                    "url": "https://www.bokjiro.go.kr"
                 }
             ]
         }
