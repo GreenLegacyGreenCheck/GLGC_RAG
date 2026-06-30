@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from pymongo import MongoClient
-
+from pymongo import MongoClient, UpdateOne 
 app = FastAPI()
 
 MONGO_URL = os.environ.get("MONGO_URL")
@@ -65,20 +65,27 @@ def recommend_policy(req: RecommendRequest):
 class UpdateDataRequest(BaseModel):
     new_data: list 
 
-# 데이터 업데이트
+# API 2: 데이터 업데이트
 @app.post("/update-data")
 def update_rag_data(req: UpdateDataRequest):
     if not req.new_data:
         return {"status": "error", "message": "받은 데이터가 없습니다."}
 
-    # 기존 DB 데이터 지우기
-    collection.delete_many({})
+    #중복 제거 및 병합
+    operations = []
+    for item in req.new_data:
+        op = UpdateOne(
+            {"url": item["url"]},  
+            {"$set": item},       
+            upsert=True           
+        )
+        operations.append(op)
     
-    # 백엔드가 준 새 데이터 DB에 저장
-    collection.insert_many(req.new_data)
+    # DB에  전송
+    if operations:
+        collection.bulk_write(operations)
     
-    return {"status": "success", "message": f"MongoDB에 {len(req.new_data)}개의 데이터가 안전하게 업데이트 되었습니다!"}
-
+    return {"status": "success", "message": f"MongoDB에 {len(req.new_data)}개의 데이터가 똑똑하게 병합(Upsert) 되었습니다!"}
 
 # 서버 상태 확인용
 @app.get("/")
