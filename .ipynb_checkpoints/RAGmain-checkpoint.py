@@ -87,11 +87,6 @@ def update_rag_data(req: UpdateDataRequest):
     
     return {"status": "success", "message": f"MongoDB에 {len(req.new_data)}개의 데이터가 똑똑하게 병합(Upsert) 되었습니다!"}
 
-# 서버 상태 확인용
-@app.get("/")
-def read_root():
-    return {"message": "RAG API Server with MongoDB is running!"}
-
 @app.get("/health")
 def health_check():
     return {"status": "ok", "message": "서버가 살아있습니다!"}
