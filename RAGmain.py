@@ -87,6 +87,6 @@ def update_rag_data(req: UpdateDataRequest):
     
     return {"status": "success", "message": f"MongoDB에 {len(req.new_data)}개의 데이터가 병합되었습니다!"}
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD", "POST"])
 def health_check():
     return {"status": "ok", "message": "서버가 살아있습니다!"}
