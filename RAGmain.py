@@ -85,7 +85,7 @@ def update_rag_data(req: UpdateDataRequest):
     if operations:
         collection.bulk_write(operations)
     
-    return {"status": "success", "message": f"MongoDB에 {len(req.new_data)}개의 데이터가 똑똑하게 병합(Upsert) 되었습니다!"}
+    return {"status": "success", "message": f"MongoDB에 {len(req.new_data)}개의 데이터가 병합되었습니다!"}
 
 @app.get("/health")
 def health_check():
