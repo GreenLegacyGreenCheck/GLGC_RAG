@@ -91,3 +91,7 @@ def update_rag_data(req: UpdateDataRequest):
 @app.get("/")
 def read_root():
     return {"message": "RAG API Server with MongoDB is running!"}
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "message": "서버가 살아있습니다!"}
